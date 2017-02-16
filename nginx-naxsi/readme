@@ -1,0 +1,3 @@
+Run the build like this:
+
+$ docker run --name nginx-naxsi -e NGINX_VERSION=nginx-1.11.10-1 -e OPENSSL_VERSION=openssl-1.1.0d -e NAXSI_BRANCH=master danlsgiga/nginx-naxsi
