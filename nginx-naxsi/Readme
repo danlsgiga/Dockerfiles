@@ -1,3 +1,7 @@
 Run the build like this:
 
 $ docker run --name nginx-naxsi -e NGINX_VERSION=nginx-1.11.10-1 -e OPENSSL_VERSION=openssl-1.1.0d -e NAXSI_BRANCH=master danlsgiga/nginx-naxsi
+
+To copy the ngx_http_naxsi_module.so module:
+
+$ docker cp nginx-naxsi:/home/builder/rpmbuild/BUILD/nginx-1.11.10/objs/ngx_http_naxsi_module.so .
