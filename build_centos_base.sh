@@ -4,8 +4,8 @@ export centos_root='/centos_image/rootfs'
 rm -rf $centos_root
 mkdir -p $centos_root
 rpm --root $centos_root --initdb
-yum reinstall --downloadonly --downloaddir . centos-release
-rpm --root $centos_root -ivh centos-release*.rpm
+yum reinstall --downloadonly --downloaddir /dev/shm centos-release
+rpm --root $centos_root -ivh /dev/shm/centos-release*.rpm
 rpm --root $centos_root --import  $centos_root/etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
 yum -y --installroot=$centos_root --setopt=tsflags='nodocs' --setopt=override_install_langs=en_US.utf8 install yum
 sed -i "/distroverpkg=centos-release/a override_install_langs=en_US.utf8\ntsflags=nodocs" $centos_root/etc/yum.conf
@@ -27,4 +27,6 @@ rm -f /var/run/nologin
 /bin/date +%Y%m%d_%H%M > /etc/BUILDTIME
 EOF
 rm -f $centos_root/etc/resolv.conf
-tar -C $centos_root -c . | docker import - danlsgiga/centos
+tar -C $centos_root -c . | docker import - danlsgiga/centos:7
+docker tag danlsgiga/centos:7 danlsgiga/centos:7.3
+docker tag danlsgiga/centos:7 danlsgiga/centos:latest
