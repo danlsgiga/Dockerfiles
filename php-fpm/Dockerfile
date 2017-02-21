@@ -1,4 +1,4 @@
-FROM centos:latest
+FROM danlsgiga/centos:latest
 MAINTAINER "Daniel Santos" <danlsgiga@gmail.com>
 RUN yum -y update && \
     yum -y install epel-release \

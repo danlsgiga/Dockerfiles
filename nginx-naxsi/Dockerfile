@@ -1,4 +1,4 @@
-FROM centos:latest
+FROM danlsgiga/centos:latest
 MAINTAINER Daniel Santos - danlsgiga@gmail.com
 
 ENV OPENSSL_VERSION="openssl-1.1.0d" NGINX_VERSION="nginx-1.11.10-1" NAXSI_BRANCH="http2"
