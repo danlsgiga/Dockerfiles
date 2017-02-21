@@ -19,7 +19,9 @@ RUN yum -y update && \
         -i /etc/php-fpm.d/www.conf && \
     mkdir -p /var/www/html && \
     useradd -MU -d /var/www/html php-fpm && \
-    chown -R php-fpm.php-fpm /var/www/html /var/log/php-fpm /run/php-fpm && \
+    chown -R php-fpm.php-fpm /var/www/html \
+                             /var/log/php-fpm \
+                             /run/php-fpm && \
     find / -type d -name proc -prune -o -perm /6000 -type f -exec chmod a-s {} \;
 USER php-fpm
 EXPOSE 9000
