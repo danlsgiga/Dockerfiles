@@ -27,4 +27,4 @@ rm -f /var/run/nologin
 /bin/date +%Y%m%d_%H%M > /etc/BUILDTIME
 EOF
 rm -f $centos_root/etc/resolv.conf
-tar -C $centos_root -c . | docker import - centos
+tar -C $centos_root -c . | docker import - danlsgiga/centos
