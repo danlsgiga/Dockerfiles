@@ -1,1 +1,1 @@
-docker build --force-rm . -t php-fpm:7.1 -t php-fpm:latest
+docker build --force-rm . -t danlsgiga/php-fpm:7.1 -t danlsgiga/php-fpm:latest
