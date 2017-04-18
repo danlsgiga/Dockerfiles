@@ -14,6 +14,4 @@ sed -i "s|--with-http_ssl_module|--with-http_ssl_module --add-dynamic-module=/tm
 sed -i "s|--with-http_ssl_module|--with-http_ssl_module --add-dynamic-module=/tmp/headers-more-nginx-module-${MORE_HEADERS_VERSION}|g" /home/builder/rpmbuild/SPECS/nginx.spec && \
 sed -i "s|%files|%files\n%{_libdir}/nginx/modules/ngx_http_naxsi_module.so|g" /home/builder/rpmbuild/SPECS/nginx.spec && \
 sed -i "s|%files|%files\n%{_libdir}/nginx/modules/ngx_http_headers_more_filter_module.so|g" /home/builder/rpmbuild/SPECS/nginx.spec && \
-sed -i "s|%setup -q|%setup -q\nsed -i \"s\|Server: nginx\|Server: ${NGINX_SERVER_HEADER}\|g\" %{bdir}/src/http/ngx_http_header_filter_module.c|g" /home/builder/rpmbuild/SPECS/nginx.spec && \
-sed -i "s|%setup -q|%setup -q\nsed -i \'s\|nginx/\" NGINX_VERSION\|${NGINX_SERVER_HEADER}/\" NGINX_VERSION\|g\' %{bdir}/src/core/nginx.h|g" /home/builder/rpmbuild/SPECS/nginx.spec && \
 rpmbuild -ba /home/builder/rpmbuild/SPECS/nginx.spec

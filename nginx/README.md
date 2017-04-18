@@ -4,7 +4,7 @@
 
 ## Run the nginx compilation like this:
 
-`$ docker run --name nginx -e NGINX_VERSION=nginx-1.11.13-1 -e OPENSSL_VERSION=openssl-1.1.0e -e NGINX_SERVER_HEADER=nginx -e NAXSI_BRANCH=master -e MORE_HEADERS_VERSION=0.32 danlsgiga/nginx`
+`$ docker run --name nginx -e NGINX_VERSION=nginx-1.11.13-1 -e OPENSSL_VERSION=openssl-1.1.0e -e NAXSI_BRANCH=master -e MORE_HEADERS_VERSION=0.32 danlsgiga/nginx`
 
 ## To copy the ngx_http_naxsi_module.so module:
 

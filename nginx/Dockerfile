@@ -1,7 +1,7 @@
 FROM danlsgiga/centos:latest
 MAINTAINER Daniel Santos - danlsgiga@gmail.com
 
-ENV OPENSSL_VERSION="openssl-1.1.0e" NGINX_VERSION="nginx-1.11.13-1" NGINX_SERVER_HEADER="nginx" NAXSI_BRANCH="http2" MORE_HEADERS_VERSION="0.32"
+ENV OPENSSL_VERSION="openssl-1.1.0e" NGINX_VERSION="nginx-1.11.13-1" NAXSI_BRANCH="http2" MORE_HEADERS_VERSION="0.32"
 
 RUN yum -y update && \
     yum -y groupinstall 'Development Tools' && \
