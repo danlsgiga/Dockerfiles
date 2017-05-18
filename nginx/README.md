@@ -4,16 +4,20 @@
 
 ## Run the nginx compilation like this:
 
-`$ docker run --name nginx -e NGINX_VERSION=nginx-1.11.13-1 -e OPENSSL_VERSION=openssl-1.1.0e -e NAXSI_BRANCH=master -e MORE_HEADERS_VERSION=0.32 danlsgiga/nginx`
+`$ docker run --name nginx -e NGINX_VERSION=nginx-1.13.0-1 -e OPENSSL_VERSION=openssl-1.1.0e -e NAXSI_BRANCH=master -e MORE_HEADERS_VERSION=0.32 -e COOKIE_FLAG="master" danlsgiga/nginx`
 
 ## To copy the ngx_http_naxsi_module.so module:
 
-`$ docker cp nginx:/home/builder/rpmbuild/BUILD/nginx-1.11.13/objs/ngx_http_naxsi_module.so .`
+`$ docker cp nginx:/home/builder/rpmbuild/BUILD/nginx-1.13.0/objs/ngx_http_naxsi_module.so .`
 
 ## To copy the ngx_http_headers_more_filter_module.so module:
 
-`$ docker cp nginx:/home/builder/rpmbuild/BUILD/nginx-1.11.13/objs/ngx_http_headers_more_filter_module.so .`
+`$ docker cp nginx:/home/builder/rpmbuild/BUILD/nginx-1.13.0/objs/ngx_http_headers_more_filter_module.so .`
+
+## To copy the ngx_http_cookie_flag_filter_module.so module:
+
+`$ docker cp nginx:/home/builder/rpmbuild/BUILD/nginx-1.13.0/objs/ngx_http_cookie_flag_filter_module.so .`
 
 ## To copy the RPM package generated:
 
-`$ docker cp nginx:/home/builder/rpmbuild/RPMS/x86_64/nginx-1.11.13-1.el7.centos.ngx.x86_64.rpm .`
+`$ docker cp nginx:/home/builder/rpmbuild/RPMS/x86_64/nginx-1.13.0-1.el7.centos.ngx.x86_64.rpm .`
