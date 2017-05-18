@@ -8,7 +8,7 @@ wget https://github.com/danlsgiga/naxsi/archive/${NAXSI_BRANCH}.zip -O /tmp/naxs
 unzip /tmp/naxsi-${NAXSI_BRANCH}.zip -d /tmp/ && \
 wget https://github.com/danlsgiga/nginx_cookie_flag_module/archive/${COOKIE_FLAG_BRANCH}.zip -O /tmp/nginx_cookie_flag_module.zip && \
 unzip /tmp/nginx_cookie_flag_module.zip -d /tmp/ && \
-wget https://github.com/openresty/headers-more-nginx-module/archive/v${MORE_HEADERS_VERSION}.tar.gz -O /tmp/more_headers-v${MORE_HEADERS_VERSION}.tar.gz && \
+wget https://github.com/danlsgiga/headers-more-nginx-module/archive/v${MORE_HEADERS_VERSION}.tar.gz -O /tmp/more_headers-v${MORE_HEADERS_VERSION}.tar.gz && \
 tar -xvzf /tmp/more_headers-v${MORE_HEADERS_VERSION}.tar.gz -C /tmp/ && \
 rpm -ivh http://nginx.org/packages/mainline/centos/7/SRPMS/${NGINX_VERSION}.el7.ngx.src.rpm && \
 sed -i "s|--with-http_ssl_module|--with-http_ssl_module --with-openssl=/tmp/$OPENSSL_VERSION|g" /home/builder/rpmbuild/SPECS/nginx.spec && \
