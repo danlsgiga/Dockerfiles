@@ -1,0 +1,2 @@
+Build the docker image:
+docker build . -t danlsgiga/salt-pkg-http:2017.7.0
