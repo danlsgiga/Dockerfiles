@@ -1,5 +1,6 @@
 FROM danlsgiga/centos:latest
 MAINTAINER "Daniel Santos" <danlsgiga@gmail.com>
+
 RUN yum -y update && \
     yum -y install epel-release \
                    yum-utils \
@@ -8,7 +9,10 @@ RUN yum -y update && \
     yum -y install php-fpm \
                    php-mbstring \
                    php-mysql \
-                   php-gd && \
+                   php-gd \
+                   httpd \
+                   mod_ssl \
+                   supervisor && \
     yum clean all && \
     sed -e 's/127.0.0.1:9000/9000/' \ 
         -e '/allowed_clients/d' \
@@ -16,13 +20,25 @@ RUN yum -y update && \
         -e '/error_log/d' \
         -e '/user/d' \
         -e '/group/d' \
+        -e 's/.*php_flag\[display_errors\].*/php_flag\[display_errors\] = on/' \
         -i /etc/php-fpm.d/www.conf && \
-    mkdir -p /var/www/html && \
-    useradd -MU -d /var/www/html php-fpm && \
-    chown -R php-fpm.php-fpm /var/www/html \
-                             /var/log/php-fpm \
-                             /run/php-fpm && \
+    sed -e 's/80/8080/' -e 's/.*ServerName.*:/ServerName 127.0.0.1:/' -i /etc/httpd/conf/httpd.conf && \ 
+    sed -e 's/443/4443/' -i /etc/httpd/conf.d/ssl.conf && \ 
+    echo "LoadModule mpm_event_module modules/mod_mpm_event.so" > /etc/httpd/conf.modules.d/00-mpm.conf && \ 
+    usermod -s /bin/bash apache
+ 
+COPY supervisord.ini /etc/supervisord.d/supervisord.ini
+COPY httpd_vhost.conf /etc/httpd/conf.d/php.conf
+COPY mysql_test.php /var/www/html/index.php
+
+RUN chown -R apache.apache /var/www/html \
+                           /etc/{supervisor*,pki/tls} \
+                           /var/log/{php-fpm,httpd,supervisor} \
+                           /var/run/{php-fpm,httpd,supervisor} && \
     find / -type d -name proc -prune -o -perm /6000 -type f -exec chmod a-s {} \;
-USER php-fpm
-EXPOSE 9000
-CMD /usr/sbin/php-fpm --nodaemonize
+
+USER apache
+
+EXPOSE 8080
+
+CMD ["/bin/supervisord"]
