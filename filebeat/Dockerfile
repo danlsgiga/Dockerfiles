@@ -12,6 +12,5 @@ RUN yum -y update && \
 
 USER nobody
 
-ENTRYPOINT ["/bin/tini", "--"]
-
-CMD ["/usr/share/filebeat/bin/filebeat", "-path.home", "/usr/share/filebeat", "-path.config", "/etc/filebeat", "-path.data", "/var/lib/filebeat", "-path.logs", "/var/log/filebeat", "$@"]
+ENTRYPOINT ["/bin/tini", "/usr/share/filebeat/bin/filebeat", "--", "-path.home", "/usr/share/filebeat", "-path.config", "/etc/filebeat", "-path.data", "/var/lib/filebeat", "-path.logs", "/var/log/filebeat"]
+CMD ["$0"]
