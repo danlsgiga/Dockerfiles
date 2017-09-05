@@ -1,3 +1,3 @@
 ## Build the docker image:
 
-`$ docker build . -t danlsgiga/filebeat:latest`
+`$ docker build --build-arg FILEBEAT_VERSION="5.5.2" -t danlsgiga/filebeat:latest` .

@@ -1,7 +1,7 @@
 FROM danlsgiga/centos:latest
 MAINTAINER Daniel Santos - danlsgiga@gmail.com
 
-ENV FILEBEAT_VERSION="5.5.2"
+ARG FILEBEAT_VERSION="5.5.2"
 
 RUN yum -y update && \    
     yum -y install https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-${FILEBEAT_VERSION}-x86_64.rpm && \
