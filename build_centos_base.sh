@@ -1,5 +1,7 @@
 #!/bin/bash
 
+TINI_VERSION="0.16.1"
+
 export centos_root='/centos_image/rootfs'
 rm -rf $centos_root
 mkdir -p $centos_root
@@ -11,7 +13,7 @@ yum -y --installroot=$centos_root --setopt=tsflags='nodocs' --setopt=override_in
 sed -i "/distroverpkg=centos-release/a override_install_langs=en_US.utf8\ntsflags=nodocs" $centos_root/etc/yum.conf
 cp /etc/resolv.conf $centos_root/etc
 chroot $centos_root /bin/bash <<EOF
-yum -y install yum-plugin-ovl
+yum -y install yum-plugin-ovl https://github.com/krallin/tini/releases/download/v0.16.1/tini_${TINI_VERSION}-amd64.rpm
 yum clean all
 rm -rf /boot
 rm -rf /etc/firewalld
