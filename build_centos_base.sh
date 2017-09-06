@@ -11,6 +11,7 @@ rpm --root $centos_root -ivh /dev/shm/centos-release*.rpm
 rpm --root $centos_root --import  $centos_root/etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
 yum -y --installroot=$centos_root --setopt=tsflags='nodocs' --setopt=override_install_langs=en_US.utf8 install yum
 sed -i "/distroverpkg=centos-release/a override_install_langs=en_US.utf8\ntsflags=nodocs" $centos_root/etc/yum.conf
+echo "clean_requirements_on_remove=1" >> $centos_root/etc/yum.conf
 cp /etc/resolv.conf $centos_root/etc
 chroot $centos_root /bin/bash <<EOF
 yum -y install yum-plugin-ovl https://github.com/krallin/tini/releases/download/v${TINI_VERSION}/tini_${TINI_VERSION}-amd64.rpm
