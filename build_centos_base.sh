@@ -1,6 +1,6 @@
 #!/bin/bash
 
-TINI_VERSION="0.16.1"
+TINI_VERSION="0.17.0"
 
 export centos_root='/centos_image/rootfs'
 rm -rf $centos_root
@@ -31,5 +31,5 @@ rm -f /var/run/nologin
 EOF
 rm -f $centos_root/etc/resolv.conf
 tar -C $centos_root -c . | docker import - danlsgiga/centos:7
-docker tag danlsgiga/centos:7 danlsgiga/centos:7.3
+docker tag danlsgiga/centos:7 danlsgiga/centos:7.5
 docker tag danlsgiga/centos:7 danlsgiga/centos:latest
