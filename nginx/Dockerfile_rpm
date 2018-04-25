@@ -1,0 +1,13 @@
+FROM danlsgiga/centos:latest
+
+ARG NGINX_VERSION="1.13.12"
+
+RUN yum -y update && \
+    yum -y install http://nginx.org/packages/mainline/centos/7/x86_64/RPMS/nginx-${NGINX_VERSION}-1.el7_4.ngx.x86_64.rpm && \
+    yum clean all && \
+    chown -R nobody.nobody /etc/nginx /var/log/nginx /usr/share/nginx/html /var/cache/nginx
+
+USER nobody
+
+ENTRYPOINT ["/bin/tini", "--"]
+CMD ["/usr/sbin/nginx", "-g", "daemon off;"]
