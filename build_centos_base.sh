@@ -23,7 +23,6 @@ yum -y install yum-plugin-ovl https://github.com/krallin/tini/releases/download/
 find /var/log -type f -delete
 find /usr/lib64/gconv/ -type f ! -name "UTF*" -delete
 find /usr/share/{i18n,man,doc,info,gnome} -type f -delete
-find /usr/share/zoneinfo -type f \( ! -name "Etc" ! -name "UTC" \) -delete
 find /usr/{{lib,share}/locale,bin/localedef} -type f | grep -v "en_US" | xargs /bin/rm -f
 rm -rf /boot \
        /etc/firewalld \
